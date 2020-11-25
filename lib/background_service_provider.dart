@@ -8,3 +8,4 @@ import 'package:flutter/material.dart';
 
 part 'core/background_service_provider.dart';
 part 'widgets/helper.dart';
+part 'models/configure.dart';

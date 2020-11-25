@@ -29,11 +29,6 @@ class _HomeTestingMainViewState extends State<HomeTestingMainView> {
   }
 
   @override
-  void initState() { 
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
