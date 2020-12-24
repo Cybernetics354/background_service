@@ -17,6 +17,7 @@ class BackgroundService : Service(), LifecycleDetector.Listener {
 
     override fun onCreate() {
         super.onCreate()
+        _engine = flutterEngine
 
         val notification = Notifications.buildForegroundNotification(this)
         startForeground(Notifications.NOTIFICATION_ID_BACKGROUND_SERVICE, notification)
@@ -70,6 +71,8 @@ class BackgroundService : Service(), LifecycleDetector.Listener {
                 )
             }
         }
+
+        _engine = flutterEngine
     }
 
     private fun stopFlutterNativeView() {
@@ -90,6 +93,7 @@ class BackgroundService : Service(), LifecycleDetector.Listener {
     }
 
     companion object {
+        private var _engine: FlutterEngine? = null
         private const val SHARED_PREFERENCES_NAME = "com.example.background_service"
 
         private const val KEY_CALLBACK_RAW_HANDLE = "callbackRawHandle"
@@ -104,6 +108,8 @@ class BackgroundService : Service(), LifecycleDetector.Listener {
         fun stopService(context: Context) {
             val stopIntent = Intent(context, BackgroundService::class.java)
             context.stopService(stopIntent)
+            _engine?.destroy()
+            _engine = null
         }
     }
 }

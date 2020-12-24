@@ -1,9 +1,17 @@
 import 'package:background_service/background_service_provider.dart';
 import 'package:flutter/material.dart';
 
+import 'background_service_provider.dart';
+
 
 void main() {
   runApp(MyApp());
+  BackgroundServiceProvider.instance.initialize(BackgroundServiceConfiguration(
+    backgroundChannel: "com.example/background_service",
+    retainChannel: "com.example/app_retain",
+    startService: "startService",
+    stopService: "stopService"
+  ));
 }
 
 class MyApp extends StatelessWidget {
